@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOS CINCO - BONARDA 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+       
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #2c1810 0%, #5a1f1f 100%);
+            color: #f4e8d8;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+       
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+       
+        .title {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+        }
+       
+        .subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            color: #c9b991;
+            font-style: italic;
+        }
+       
+        .content {
+            line-height: 1.8;
+            font-size: 1.05em;
+            text-align: justify;
+        }
+       
+        .section-title {
+            font-size: 1.5em;
+            color: #d4af37;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+       
+        .paragraph {
+            margin-bottom: 18px;
+            text-indent: 20px;
+        }
+       
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-style: italic;
+            color: #c9b991;
+            font-size: 0.95em;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+       
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background-color: #d4af37;
+            margin-left: 2px;
+            animation: blink 0.7s infinite;
+        }
+       
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+       
+        /* Controles de audio */
+        .audio-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+       
+        .audio-button {
+            background: none;
+            border: none;
+            color: #d4af37;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+       
+        .audio-button:hover {
+            transform: scale(1.1);
+            color: #f4e8d8;
+        }
+       
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+       
+        .volume-slider {
+            width: 100px;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(212, 175, 55, 0.3);
+            outline: none;
+            -webkit-appearance: none;
+        }
+       
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #d4af37;
+            cursor: pointer;
+        }
+       
+        .volume-slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #d4af37;
+            cursor: pointer;
+            border: none;
+        }
+       
+        .volume-icon {
+            color: #d4af37;
+            font-size: 18px;
+        }
+       
+        /* Splash screen para activar audio */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2c1810 0%, #5a1f1f 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+       
+        .splash-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+       
+        .splash-button {
+            background: #d4af37;
+            color: #2c1810;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.2em;
+            font-family: 'Georgia', serif;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+        }
+       
+        .splash-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+        }
+       
+        .splash-text {
+            color: #d4af37;
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+       
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            .title {
+                font-size: 1.6em;
+            }
+            .content {
+                font-size: 1em;
+            }
+            .audio-controls {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 15px;
+            }
+            .volume-control {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Splash screen para activar audio -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-text">🍷 Bienvenido a la historia de Los Cinco 🍷</div>
+        <button class="splash-button" id="startButton">Comenzar</button>
+    </div>
+   
+    <div class="container">
+        <div id="animated-content"></div>
+    </div>
+   
+    <!-- Controles de audio -->
+    <div class="audio-controls">
+        <button class="audio-button" id="playPauseBtn" title="Pausar/Reproducir">
+            <span id="playIcon">⏸</span>
+        </button>
+        <div class="volume-control">
+            <span class="volume-icon">🔊</span>
+            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="30">
+        </div>
+    </div>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <script>
+        const fullText = `<div class="title">LOS CINCO – BONARDA 2025</div>
+<div class="subtitle">San Juan · Argentina</div>
+
+<div class="section-title">Una historia entre amigos, vino y charlas</div>
+
+<div class="paragraph">Dicen que los grandes proyectos nacen en una mesa, entre copas, risas y conversaciones que se alargan hasta que el sol asoma.</div>
+
+<div class="paragraph">Así empezó Los Cinco.
+Cinco amigos en San Juan, unidos por la amistad y el gusto por los buenos vinos, se propusieron crear algo propio: un vino que representara esos momentos sencillos pero intensos, donde el tiempo se detiene y las palabras fluyen.</div>
+
+<div class="paragraph">Después de muchas reuniones, comidas y largas catas, eligieron un varietal que reflejara el espíritu del grupo: Bonarda, una cepa noble, generosa y auténtica, capaz de expresar con elegancia la calidez y la pasión de quienes la elaboran.</div>
+
+<div class="section-title">El vino</div>
+
+<div class="paragraph">Elaborado durante el año 2025, este Bonarda joven fue cuidadosamente macerado utilizando un sistema de air mixing, que permite una rotura natural del sombrero mediante pulsos de aire sanitario.
+La fermentación se llevó a cabo a una temperatura controlada de 24 °C, empleando levaduras seleccionadas que realzan su perfil aromático.</div>
+
+<div class="paragraph">Posteriormente, el vino se maduró durante seis meses con roble francés, logrando un equilibrio entre frescura y complejidad.
+En copa, despliega un color rojo violáceo intenso; ofrece notas de fruta madura, suaves toques de vainilla y un fondo especiado.
+En boca es amable, redondo y equilibrado, ideal para acompañar carnes, pastas o simplemente una buena charla entre amigos.</div>
+
+<div class="section-title">El espíritu de Los Cinco</div>
+
+<div class="paragraph">Más que un vino, Los Cinco es una excusa para reencontrarse.
+Cada botella encierra la historia de una amistad y de una pasión compartida, nacida del deseo de celebrar la vida y los momentos que realmente importan.</div>
+
+<div class="paragraph">Porque al final, el vino no se bebe solo:
+se comparte.</div>`;
+
+        let currentIndex = 0;
+        const container = document.getElementById('animated-content');
+        const speed = 30;
+       
+        // Variables de audio
+        let synth, reverb, filter, player;
+        let isPlaying = false;
+       
+        // Inicializar música Bossa Nova (estilo covers relajados)
+        async function initAudio() {
+            await Tone.start();
+           
+            // Guitarra acústica (acordes de bossa)
+            const guitar = new Tone.PolySynth(Tone.Synth, {
+                oscillator: { type: 'triangle' },
+                envelope: {
+                    attack: 0.01,
+                    decay: 0.2,
+                    sustain: 0.2,
+                    release: 0.3
+                }
+            }).toDestination();
+           
+            // Piano suave (melodía)
+            const piano = new Tone.PolySynth(Tone.Synth, {
+                oscillator: { type: 'sine' },
+                envelope: {
+                    attack: 0.005,
+                    decay: 0.3,
+                    sustain: 0.1,
+                    release: 0.5
+                }
+            }).toDestination();
+           
+            // Bajo suave
+            const bass = new Tone.Synth({
+                oscillator: { type: 'sine' },
+                envelope: {
+                    attack: 0.01,
+                    decay: 0.2,
+                    sustain: 0.3,
+                    release: 0.4
+                }
+            }).toDestination();
+           
+            // Percusión suave (shaker/bossa rhythm)
+            const shaker = new Tone.NoiseSynth({
+                noise: { type: 'white' },
+                envelope: {
+                    attack: 0.001,
+                    decay: 0.05,
+                    sustain: 0,
+                    release: 0.05
+                }
+            }).toDestination();
+           
+            // Reverb cálido
+            reverb = new Tone.Reverb({
+                decay: 2,
+                wet: 0.35
+            }).toDestination();
+           
+            guitar.connect(reverb);
+            piano.connect(reverb);
+            bass.connect(reverb);
+           
+            // Volúmenes
+            Tone.Master.volume.value = -14;
+            guitar.volume.value = -10;
+            piano.volume.value = -12;
+            bass.volume.value = -16;
+            shaker.volume.value = -28;
+           
+            // Progresión de acordes típica de bossa (inspirada en "Girl from Ipanema")
+            const chordProgression = [
+                ['F4', 'A4', 'C5'],      // Fmaj7
+                ['G4', 'B4', 'D5'],      // G7
+                ['E4', 'G4', 'B4'],      // Em7
+                ['A3', 'C4', 'E4'],      // Am7
+                ['D4', 'F4', 'A4'],      // Dm7
+                ['G3', 'B3', 'D4', 'F4'], // G7
+                ['C4', 'E4', 'G4', 'B4'], // Cmaj7
+                ['F4', 'A4', 'C5']       // Fmaj7
+            ];
+           
+            // Melodía estilo bossa (inspirada en temas conocidos)
+            const melody = [
+                'A4', 'C5', 'D5', 'E5', 'D5', 'C5', 'A4', 'G4',
+                'F4', 'A4', 'C5', 'D5', 'C5', 'A4', 'G4', 'F4',
+                'E4', 'G4', 'A4', 'B4', 'A4', 'G4', 'E4', 'D4',
+                'C4', 'E4', 'G4', 'A4', 'G4', 'E4', 'C4', 'D4'
+            ];
+           
+            // Línea de bajo (walking bass típico de bossa)
+            const bassLine = [
+                'F2', 'G2', 'E2', 'A2', 'D2', 'G2', 'C2', 'F2'
+            ];
+           
+            let chordIndex = 0;
+            let melodyIndex = 0;
+            let bassIndex = 0;
+           
+            // Patrón rítmico de guitarra (bossa nova pattern)
+            const guitarPattern = new Tone.Loop((time) => {
+                const chord = chordProgression[chordIndex % chordProgression.length];
+                guitar.triggerAttackRelease(chord, '8n', time);
+                chordIndex++;
+            }, '2n');
+           
+            // Melodía de piano
+            const pianoMelody = new Tone.Loop((time) => {
+                const note = melody[melodyIndex % melody.length];
+                piano.triggerAttackRelease(note, '4n', time);
+                melodyIndex++;
+            }, '4n');
+           
+            // Bajo
+            const bassPattern = new Tone.Loop((time) => {
+                const note = bassLine[bassIndex % bassLine.length];
+                bass.triggerAttackRelease(note, '4n', time);
+                bassIndex++;
+            }, '2n');
+           
+            // Shaker (patrón sincopado de bossa)
+            const shakerPattern = new Tone.Pattern((time) => {
+                shaker.triggerAttackRelease('32n', time);
+            }, [0, 1, 2, 3, 4, 5, 6, 7], 'up');
+           
+            guitarPattern.start(0);
+            pianoMelody.start('4n');
+            bassPattern.start(0);
+            shakerPattern.start(0);
+           
+            Tone.Transport.bpm.value = 128; // Tempo típico de bossa nova
+            Tone.Transport.start();
+            isPlaying = true;
+        }
+       
+        // Controles de audio
+        document.getElementById('startButton').addEventListener('click', async () => {
+            await initAudio();
+            document.getElementById('splashScreen').classList.add('hidden');
+            setTimeout(() => {
+                document.getElementById('splashScreen').style.display = 'none';
+                typeWriter();
+            }, 500);
+        });
+       
+        document.getElementById('playPauseBtn').addEventListener('click', () => {
+            if (isPlaying) {
+                Tone.Transport.pause();
+                document.getElementById('playIcon').textContent = '▶';
+                isPlaying = false;
+            } else {
+                Tone.Transport.start();
+                document.getElementById('playIcon').textContent = '⏸';
+                isPlaying = true;
+            }
+        });
+       
+        document.getElementById('volumeSlider').addEventListener('input', (e) => {
+            const volume = e.target.value;
+            Tone.Master.volume.value = (volume / 100) * 10 - 30;
+        });
+       
+        function typeWriter() {
+            if (currentIndex < fullText.length) {
+                const currentChar = fullText[currentIndex];
+               
+                container.innerHTML = fullText.substring(0, currentIndex + 1) + '<span class="cursor"></span>';
+               
+                currentIndex++;
+               
+                let delay = speed;
+                if (currentChar === '.' || currentChar === ',' || currentChar === ':') {
+                    delay = speed * 8;
+                } else if (currentChar === ' ') {
+                    delay = speed * 0.5;
+                } else if (currentChar === '\n') {
+                    delay = speed * 10;
+                }
+               
+                setTimeout(typeWriter, delay);
+            } else {
+                container.innerHTML = fullText;
+            }
+        }
+    </script>
+</body>
+</html>

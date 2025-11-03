@@ -67,16 +67,6 @@
             text-indent: 20px;
         }
        
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            font-style: italic;
-            color: #c9b991;
-            font-size: 0.95em;
-            padding-top: 20px;
-            border-top: 1px solid rgba(212, 175, 55, 0.3);
-        }
-       
         .cursor {
             display: inline-block;
             width: 2px;
@@ -250,11 +240,15 @@
         </button>
         <div class="volume-control">
             <span class="volume-icon">🔊</span>
-            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="30">
+            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
         </div>
     </div>
    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <!-- Audio element -->
+    <audio id="backgroundMusic" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+   
     <script>
         const fullText = `<div class="title">LOS CINCO – BONARDA 2025</div>
 <div class="subtitle">San Juan · Argentina</div>
@@ -290,142 +284,16 @@ se comparte.</div>`;
         const speed = 30;
        
         // Variables de audio
-        let synth, reverb, filter, player;
+        const audio = document.getElementById('backgroundMusic');
         let isPlaying = false;
        
-        // Inicializar música Bossa Nova (estilo covers relajados)
-        async function initAudio() {
-            await Tone.start();
-           
-            // Guitarra acústica (acordes de bossa)
-            const guitar = new Tone.PolySynth(Tone.Synth, {
-                oscillator: { type: 'triangle' },
-                envelope: {
-                    attack: 0.01,
-                    decay: 0.2,
-                    sustain: 0.2,
-                    release: 0.3
-                }
-            }).toDestination();
-           
-            // Piano suave (melodía)
-            const piano = new Tone.PolySynth(Tone.Synth, {
-                oscillator: { type: 'sine' },
-                envelope: {
-                    attack: 0.005,
-                    decay: 0.3,
-                    sustain: 0.1,
-                    release: 0.5
-                }
-            }).toDestination();
-           
-            // Bajo suave
-            const bass = new Tone.Synth({
-                oscillator: { type: 'sine' },
-                envelope: {
-                    attack: 0.01,
-                    decay: 0.2,
-                    sustain: 0.3,
-                    release: 0.4
-                }
-            }).toDestination();
-           
-            // Percusión suave (shaker/bossa rhythm)
-            const shaker = new Tone.NoiseSynth({
-                noise: { type: 'white' },
-                envelope: {
-                    attack: 0.001,
-                    decay: 0.05,
-                    sustain: 0,
-                    release: 0.05
-                }
-            }).toDestination();
-           
-            // Reverb cálido
-            reverb = new Tone.Reverb({
-                decay: 2,
-                wet: 0.35
-            }).toDestination();
-           
-            guitar.connect(reverb);
-            piano.connect(reverb);
-            bass.connect(reverb);
-           
-            // Volúmenes
-            Tone.Master.volume.value = -14;
-            guitar.volume.value = -10;
-            piano.volume.value = -12;
-            bass.volume.value = -16;
-            shaker.volume.value = -28;
-           
-            // Progresión de acordes típica de bossa (inspirada en "Girl from Ipanema")
-            const chordProgression = [
-                ['F4', 'A4', 'C5'],      // Fmaj7
-                ['G4', 'B4', 'D5'],      // G7
-                ['E4', 'G4', 'B4'],      // Em7
-                ['A3', 'C4', 'E4'],      // Am7
-                ['D4', 'F4', 'A4'],      // Dm7
-                ['G3', 'B3', 'D4', 'F4'], // G7
-                ['C4', 'E4', 'G4', 'B4'], // Cmaj7
-                ['F4', 'A4', 'C5']       // Fmaj7
-            ];
-           
-            // Melodía estilo bossa (inspirada en temas conocidos)
-            const melody = [
-                'A4', 'C5', 'D5', 'E5', 'D5', 'C5', 'A4', 'G4',
-                'F4', 'A4', 'C5', 'D5', 'C5', 'A4', 'G4', 'F4',
-                'E4', 'G4', 'A4', 'B4', 'A4', 'G4', 'E4', 'D4',
-                'C4', 'E4', 'G4', 'A4', 'G4', 'E4', 'C4', 'D4'
-            ];
-           
-            // Línea de bajo (walking bass típico de bossa)
-            const bassLine = [
-                'F2', 'G2', 'E2', 'A2', 'D2', 'G2', 'C2', 'F2'
-            ];
-           
-            let chordIndex = 0;
-            let melodyIndex = 0;
-            let bassIndex = 0;
-           
-            // Patrón rítmico de guitarra (bossa nova pattern)
-            const guitarPattern = new Tone.Loop((time) => {
-                const chord = chordProgression[chordIndex % chordProgression.length];
-                guitar.triggerAttackRelease(chord, '8n', time);
-                chordIndex++;
-            }, '2n');
-           
-            // Melodía de piano
-            const pianoMelody = new Tone.Loop((time) => {
-                const note = melody[melodyIndex % melody.length];
-                piano.triggerAttackRelease(note, '4n', time);
-                melodyIndex++;
-            }, '4n');
-           
-            // Bajo
-            const bassPattern = new Tone.Loop((time) => {
-                const note = bassLine[bassIndex % bassLine.length];
-                bass.triggerAttackRelease(note, '4n', time);
-                bassIndex++;
-            }, '2n');
-           
-            // Shaker (patrón sincopado de bossa)
-            const shakerPattern = new Tone.Pattern((time) => {
-                shaker.triggerAttackRelease('32n', time);
-            }, [0, 1, 2, 3, 4, 5, 6, 7], 'up');
-           
-            guitarPattern.start(0);
-            pianoMelody.start('4n');
-            bassPattern.start(0);
-            shakerPattern.start(0);
-           
-            Tone.Transport.bpm.value = 128; // Tempo típico de bossa nova
-            Tone.Transport.start();
-            isPlaying = true;
-        }
+        // Configuración inicial de volumen
+        audio.volume = 0.5;
        
         // Controles de audio
-        document.getElementById('startButton').addEventListener('click', async () => {
-            await initAudio();
+        document.getElementById('startButton').addEventListener('click', () => {
+            audio.play();
+            isPlaying = true;
             document.getElementById('splashScreen').classList.add('hidden');
             setTimeout(() => {
                 document.getElementById('splashScreen').style.display = 'none';
@@ -435,19 +303,18 @@ se comparte.</div>`;
        
         document.getElementById('playPauseBtn').addEventListener('click', () => {
             if (isPlaying) {
-                Tone.Transport.pause();
+                audio.pause();
                 document.getElementById('playIcon').textContent = '▶';
                 isPlaying = false;
             } else {
-                Tone.Transport.start();
+                audio.play();
                 document.getElementById('playIcon').textContent = '⏸';
                 isPlaying = true;
             }
         });
        
         document.getElementById('volumeSlider').addEventListener('input', (e) => {
-            const volume = e.target.value;
-            Tone.Master.volume.value = (volume / 100) * 10 - 30;
+            audio.volume = e.target.value / 100;
         });
        
         function typeWriter() {
@@ -474,4 +341,4 @@ se comparte.</div>`;
         }
     </script>
 </body>
-</html>
+</html> 

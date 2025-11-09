@@ -252,22 +252,6 @@
     <button class="splash-button" id="startButton">Comenzar</button>
   </div>
 
- <!-- Controles de audio -->
-    <div class="audio-controls">
-        <button class="audio-button" id="playPauseBtn" title="Pausar/Reproducir">
-            <span id="playIcon">⏸</span>
-        </button>
-        <div class="volume-control">
-            <span class="volume-icon">🔊</span>
-            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="30">
-        </div>
-    </div>
-   
-    <!-- Audio element -->
-    <audio id="backgroundMusic" loop>
-        <source src="tema.mp3" type="audio/mp3">
-    </audio>
-
   <div class="container">
     <div class="title">LOS CINCO – BONARDA 2024-2025</div>
     <div class="subtitle">San Juan · Argentina</div>
@@ -312,39 +296,31 @@ Cada botella de este Bonarda encierra la historia de una amistad y de una pasió
     </div>
   </div>
 
-   // Variables de audio
-        const audio = document.getElementById('backgroundMusic');
-        let isPlaying = false;
-       
-        // Configuración inicial de volumen
-        audio.volume = 0.3;
-       
-        // Controles de audio
-        document.getElementById('startButton').addEventListener('click', () => {
-            audio.play();
-            isPlaying = true;
-            document.getElementById('splashScreen').classList.add('hidden');
-            setTimeout(() => {
-                document.getElementById('splashScreen').style.display = 'none';
-                typeWriter();
-            }, 500);
-        });
-       
-        document.getElementById('playPauseBtn').addEventListener('click', () => {
-            if (isPlaying) {
-                audio.pause();
-                document.getElementById('playIcon').textContent = '▶';
-                isPlaying = false;
-            } else {
-                audio.play();
-                document.getElementById('playIcon').textContent = '⏸';
-                isPlaying = true;
-            }
-        });
-       
-        document.getElementById('volumeSlider').addEventListener('input', (e) => {
-            audio.volume = e.target.value / 100;
-        });
+  <!-- 🎵 Controles de audio -->
+  <div class="audio-controls">
+    <button class="audio-button" id="playPauseBtn" title="Pausar/Reproducir">
+      <span id="playIcon">⏸</span>
+    </button>
+    <div class="volume-control">
+      <span class="volume-icon">🔊</span>
+      <input
+        type="range"
+        class="volume-slider"
+        id="volumeSlider"
+        min="0"
+        max="100"
+        value="30"
+      />
+    </div>
+  </div>
+
+  <!-- 🎧 Audio -->
+  <audio id="backgroundMusic" loop>
+    <source
+      src="bossa%20nova-verano-instrumental-brasil.mp3"
+      type="audio/mp3"
+    />
+  </audio>
 
   <script>
     // 💫 Fondo panorámico dinámico
@@ -365,7 +341,37 @@ Cada botella de este Bonarda encierra la historia de una amistad y de una pasió
       });
     }
 
-    
+    // 🎵 Control de audio
+    const audio = document.getElementById("backgroundMusic");
+    const splash = document.getElementById("splashScreen");
+    const playPauseBtn = document.getElementById("playPauseBtn");
+    const playIcon = document.getElementById("playIcon");
+    const volumeSlider = document.getElementById("volumeSlider");
+    let isPlaying = false;
+
+    audio.volume = 0.3;
+
+    document.getElementById("startButton").addEventListener("click", () => {
+      audio.play();
+      isPlaying = true;
+      splash.classList.add("hidden");
+      setTimeout(() => (splash.style.display = "none"), 600);
+    });
+
+    playPauseBtn.addEventListener("click", () => {
+      if (isPlaying) {
+        audio.pause();
+        playIcon.textContent = "▶";
+      } else {
+        audio.play();
+        playIcon.textContent = "⏸";
+      }
+      isPlaying = !isPlaying;
+    });
+
+    volumeSlider.addEventListener("input", (e) => {
+      audio.volume = e.target.value / 100;
+    });
   </script>
 </body>
 </html>

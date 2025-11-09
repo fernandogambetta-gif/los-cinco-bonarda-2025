@@ -1,294 +1,361 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOS CINCO - BONARDA 2024</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-       
-        body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #2c1810 0%, #5a1f1f 100%);
-            color: #f4e8d8;
-            min-height: 100vh;
-            padding: 20px;
-            overflow-x: hidden;
-        }
-       
-        .container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-        }
-       
-        .title {
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 2.2em;
-            color: #d4af37;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            letter-spacing: 2px;
-        }
-       
-        .subtitle {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 1.1em;
-            color: #c9b991;
-            font-style: italic;
-        }
-       
-        .content {
-            line-height: 1.8;
-            font-size: 1.05em;
-            text-align: justify;
-        }
-       
-        .section-title {
-            font-size: 1.5em;
-            color: #d4af37;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            text-align: center;
-            font-weight: bold;
-        }
-       
-        .paragraph {
-            margin-bottom: 18px;
-            text-indent: 20px;
-        }
-       
-        .cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1em;
-            background-color: #d4af37;
-            margin-left: 2px;
-            animation: blink 0.7s infinite;
-        }
-       
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-       
-        .instagram-link {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(212, 175, 55, 0.3);
-        }
-       
-        .instagram-link p {
-            color: #c9b991;
-            font-size: 1em;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-       
-        .instagram-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 1.1em;
-            font-weight: bold;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(188, 24, 136, 0.3);
-        }
-       
-        .instagram-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(188, 24, 136, 0.5);
-        }
-       
-        .instagram-icon {
-            font-size: 1.4em;
-        }
-       
-        /* Controles de audio */
-        .audio-controls {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 15px 20px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-        }
-       
-        .audio-button {
-            background: none;
-            border: none;
-            color: #d4af37;
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-        }
-       
-        .audio-button:hover {
-            transform: scale(1.1);
-            color: #f4e8d8;
-        }
-       
-        .volume-control {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-       
-        .volume-slider {
-            width: 100px;
-            height: 4px;
-            border-radius: 2px;
-            background: rgba(212, 175, 55, 0.3);
-            outline: none;
-            -webkit-appearance: none;
-        }
-       
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: #d4af37;
-            cursor: pointer;
-        }
-       
-        .volume-slider::-moz-range-thumb {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: #d4af37;
-            cursor: pointer;
-            border: none;
-        }
-       
-        .volume-icon {
-            color: #d4af37;
-            font-size: 18px;
-        }
-       
-        /* Splash screen para activar audio */
-        .splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #2c1810 0%, #5a1f1f 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s;
-        }
-       
-        .splash-screen.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-       
-        .splash-button {
-            background: #d4af37;
-            color: #2c1810;
-            border: none;
-            padding: 20px 50px;
-            font-size: 1.2em;
-            font-family: 'Georgia', serif;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
-        }
-       
-        .splash-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
-        }
-       
-        .splash-text {
-            color: #d4af37;
-            font-size: 1.5em;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-       
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-            }
-            .title {
-                font-size: 1.6em;
-            }
-            .content {
-                font-size: 1em;
-            }
-            .audio-controls {
-                bottom: 20px;
-                right: 20px;
-                padding: 12px 15px;
-            }
-            .volume-control {
-                display: none;
-            }
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOS CINCO - BONARDA 2024-2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+       
+        body {
+            font-family: 'Georgia', serif;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+            background: #000;
+        }
+       
+        /* Imagen de fondo con parallax */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            background-image: url('vinedo.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+        }
+       
+        /* Overlay oscuro para legibilidad */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+       
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: #f4e8d8;
+        }
+       
+        .title {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            letter-spacing: 2px;
+        }
+       
+        .subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            color: #c9b991;
+            font-style: italic;
+        }
+       
+        .content {
+            line-height: 1.8;
+            font-size: 1.05em;
+            text-align: justify;
+        }
+       
+        .section-title {
+            font-size: 1.5em;
+            color: #d4af37;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+       
+        .paragraph {
+            margin-bottom: 18px;
+            text-indent: 20px;
+        }
+       
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background-color: #d4af37;
+            margin-left: 2px;
+            animation: blink 0.7s infinite;
+        }
+       
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+       
+        .instagram-link {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+       
+        .instagram-link p {
+            color: #c9b991;
+            font-size: 1em;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+       
+        .instagram-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(188, 24, 136, 0.3);
+        }
+       
+        .instagram-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(188, 24, 136, 0.5);
+        }
+       
+        .instagram-icon {
+            font-size: 1.4em;
+        }
+       
+        /* Controles de audio */
+        .audio-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            z-index: 1000;
+        }
+       
+        .audio-button {
+            background: none;
+            border: none;
+            color: #d4af37;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+       
+        .audio-button:hover {
+            transform: scale(1.1);
+            color: #f4e8d8;
+        }
+       
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+       
+        .volume-slider {
+            width: 100px;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(212, 175, 55, 0.3);
+            outline: none;
+            -webkit-appearance: none;
+        }
+       
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #d4af37;
+            cursor: pointer;
+        }
+       
+        .volume-slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #d4af37;
+            cursor: pointer;
+            border: none;
+        }
+       
+        .volume-icon {
+            color: #d4af37;
+            font-size: 18px;
+        }
+       
+        /* Splash screen para activar audio */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+            overflow: hidden;
+        }
+       
+        .splash-background {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            background-image: url('vinedo.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+        }
+       
+        .splash-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+       
+        .splash-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+       
+        .splash-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+       
+        .splash-button {
+            background: #d4af37;
+            color: #2c1810;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.2em;
+            font-family: 'Georgia', serif;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+        }
+       
+        .splash-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+        }
+       
+        .splash-text {
+            color: #d4af37;
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+       
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            .title {
+                font-size: 1.6em;
+            }
+            .content {
+                font-size: 1em;
+            }
+            .audio-controls {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 15px;
+            }
+            .volume-control {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Splash screen para activar audio -->
-    <div class="splash-screen" id="splashScreen">
-        <div class="splash-text">🍷 Bienvenido a Vino Los Cinco 🍷</div>
-        <button class="splash-button" id="startButton">Comenzar</button>
-    </div>
-   
-    <div class="container">
-        <div id="animated-content"></div>
-    </div>
-   
-    <!-- Controles de audio -->
-    <div class="audio-controls">
-        <button class="audio-button" id="playPauseBtn" title="Pausar/Reproducir">
-            <span id="playIcon">⏸</span>
-        </button>
-        <div class="volume-control">
-            <span class="volume-icon">🔊</span>
-            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="30">
-        </div>
-    </div>
-   
-    <!-- Audio element -->
-    <audio id="backgroundMusic" loop>
-        <source src="tema.mp3" type="audio/mp3">
-    </audio>
-   
-    <script>
-        const fullText = `<div class="title">LOS CINCO – BONARDA 2024-2025</div>
+    <!-- Splash screen para activar audio -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-background" id="splashBg"></div>
+        <div class="splash-screen::before"></div>
+        <div class="splash-content">
+            <div class="splash-text"> Bienvenido a la historia de Los Cinco </div>
+            <button class="splash-button" id="startButton">Comenzar</button>
+        </div>
+    </div>
+   
+    <div class="container">
+        <div id="animated-content"></div>
+    </div>
+   
+    <!-- Controles de audio -->
+    <div class="audio-controls">
+        <button class="audio-button" id="playPauseBtn" title="Pausar/Reproducir">
+            <span id="playIcon"></span>
+        </button>
+        <div class="volume-control">
+            <span class="volume-icon"></span>
+            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="30">
+        </div>
+    </div>
+   
+    <!-- Audio element -->
+    <audio id="backgroundMusic" loop>
+        <source src="tema.mp3" type="audio/mp3">
+    </audio>
+   
+    <script>
+        const fullText = `<div class="title">LOS CINCO – BONARDA 2024-2025</div>
 <div class="subtitle">San Juan · Argentina</div>
 
 <div class="section-title">Una historia entre amigos, vino y charlas</div>
@@ -312,76 +379,122 @@ En boca es amable, redondo y equilibrado, ideal para acompañar carnes, pastas o
 <div class="paragraph">Más que un vino, Los Cinco es una excusa para reencontrarse.
 Cada botella de este Bonarda encierra la historia de una amistad y de una pasión compartida, nacida del deseo de celebrar la vida y los momentos que realmente importan.</div>
 
-<div class="paragraph">Porque al final, el vino no se bebe solo... se comparte.</div>
+<div class="paragraph">Porque al final, el vino no se bebe solo...se comparte.</div>
 
 <div class="instagram-link">
-    <p>Seguinos en Instagram para más historias y momentos:</p>
-    <a href="https://www.instagram.com/loscincovinos/" target="_blank" class="instagram-button">
-        <span class="instagram-icon">📷</span>
-        @loscincovinos
-    </a>
+    <p>Seguinos en Instagram para más historias y momentos:</p>
+    <a href="https://www.instagram.com/loscincovinos/" target="_blank" class="instagram-button">
+        <span class="instagram-icon"></span>
+        @loscincovinos
+    </a>
 </div>`;
 
-        let currentIndex = 0;
-        const container = document.getElementById('animated-content');
-        const speed = 30;
-       
-        // Variables de audio
-        const audio = document.getElementById('backgroundMusic');
-        let isPlaying = false;
-       
-        // Configuración inicial de volumen
-        audio.volume = 0.5;
-       
-        // Controles de audio
-        document.getElementById('startButton').addEventListener('click', () => {
-            audio.play();
-            isPlaying = true;
-            document.getElementById('splashScreen').classList.add('hidden');
-            setTimeout(() => {
-                document.getElementById('splashScreen').style.display = 'none';
-                typeWriter();
-            }, 500);
-        });
-       
-        document.getElementById('playPauseBtn').addEventListener('click', () => {
-            if (isPlaying) {
-                audio.pause();
-                document.getElementById('playIcon').textContent = '▶';
-                isPlaying = false;
-            } else {
-                audio.play();
-                document.getElementById('playIcon').textContent = '⏸';
-                isPlaying = true;
-            }
-        });
-       
-        document.getElementById('volumeSlider').addEventListener('input', (e) => {
-            audio.volume = e.target.value / 100;
-        });
-       
-        function typeWriter() {
-            if (currentIndex < fullText.length) {
-                const currentChar = fullText[currentIndex];
-               
-                container.innerHTML = fullText.substring(0, currentIndex + 1) + '<span class="cursor"></span>';
-               
-                currentIndex++;
-               
-                let delay = speed;
-                if (currentChar === '.' || currentChar === ',' || currentChar === ':') {
-                    delay = speed * 8;
-                } else if (currentChar === ' ') {
-                    delay = speed * 0.5;
-                } else if (currentChar === '\n') {
-                    delay = speed * 10;
-                }
-               
-                setTimeout(typeWriter, delay);
-            } else {
-                container.innerHTML = fullText;
-            }
-        }
-    </script>
+        let currentIndex = 0;
+        const container = document.getElementById('animated-content');
+        const speed = 30;
+       
+        // Variables de audio
+        const audio = document.getElementById('backgroundMusic');
+        let isPlaying = false;
+       
+        // Configuración inicial de volumen
+        audio.volume = 0.5;
+       
+        // Efecto Parallax con Giroscopio
+        let backgroundElement = null;
+        let splashBgElement = null;
+       
+        function initParallax() {
+            backgroundElement = document.querySelector('body::before') || document.body;
+            splashBgElement = document.getElementById('splashBg');
+           
+            if (window.DeviceOrientationEvent) {
+                window.addEventListener('deviceorientation', handleOrientation);
+            }
+        }
+       
+        function handleOrientation(event) {
+            const gamma = event.gamma; // Izquierda-derecha (-90 a 90)
+            const beta = event.beta;   // Arriba-abajo (-180 a 180)
+           
+            // Limitar el rango de movimiento
+            const maxTilt = 30;
+            const gammaConstrained = Math.max(-maxTilt, Math.min(maxTilt, gamma));
+            const betaConstrained = Math.max(-maxTilt, Math.min(maxTilt, beta));
+           
+            // Calcular el desplazamiento (multiplicador para suavidad)
+            const moveX = (gammaConstrained / maxTilt) * 15; // 15px máximo
+            const moveY = (betaConstrained / maxTilt) * 15;
+           
+            // Aplicar transformación al fondo principal
+            const bodyBefore = document.querySelector('body');
+            if (bodyBefore) {
+                bodyBefore.style.setProperty('--move-x', `${moveX}px`);
+                bodyBefore.style.setProperty('--move-y', `${moveY}px`);
+            }
+           
+            // Aplicar al splash screen
+            if (splashBgElement) {
+                splashBgElement.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            }
+           
+            // Usar CSS custom properties para el pseudo-elemento
+            document.documentElement.style.setProperty('--parallax-x', `${moveX}px`);
+            document.documentElement.style.setProperty('--parallax-y', `${moveY}px`);
+        }
+       
+        // Inicializar parallax
+        initParallax();
+       
+        // Controles de audio
+        document.getElementById('startButton').addEventListener('click', () => {
+            audio.play();
+            isPlaying = true;
+            document.getElementById('splashScreen').classList.add('hidden');
+            setTimeout(() => {
+                document.getElementById('splashScreen').style.display = 'none';
+                typeWriter();
+            }, 500);
+        });
+       
+        document.getElementById('playPauseBtn').addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                document.getElementById('playIcon').textContent = '';
+                isPlaying = false;
+            } else {
+                audio.play();
+                document.getElementById('playIcon').textContent = '';
+                isPlaying = true;
+            }
+        });
+       
+        document.getElementById('volumeSlider').addEventListener('input', (e) => {
+            audio.volume = e.target.value / 100;
+        });
+       
+        function typeWriter() {
+            if (currentIndex < fullText.length) {
+                const currentChar = fullText[currentIndex];
+               
+                container.innerHTML = fullText.substring(0, currentIndex + 1) + '<span class="cursor"></span>';
+               
+                currentIndex++;
+               
+                let delay = speed;
+                if (currentChar === '.' || currentChar === ',' || currentChar === ':') {
+                    delay = speed * 8;
+                } else if (currentChar === ' ') {
+                    delay = speed * 0.5;
+                } else if (currentChar === '\n') {
+                    delay = speed * 10;
+                }
+               
+                setTimeout(typeWriter, delay);
+            } else {
+                container.innerHTML = fullText;
+            }
+        }
+    </script>
 </body>
-</html>
+</html> 

@@ -1,354 +1,377 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOS CINCO - BONARDA 2024-2025</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LOS CINCO - BONARDA 2024-2025</title>
 
-    <!-- Font Awesome para el logo real de Instagram -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Font Awesome para el logo real de Instagram -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        /* 🌄 Fondo panorámico 360 simulado */
-        body {
-            font-family: 'Georgia', serif;
-            height: 100vh;
-            background: url('vinedo360.jpg') center center / cover no-repeat fixed;
-            color: #f4e8d8;
-            overflow-x: hidden;
-            transition: background-position 0.05s linear;
-        }
+    /* 🌄 Fondo panorámico 360 simulado */
+    body {
+      font-family: "Georgia", serif;
+      height: 100vh;
+      background: url("vinedo360.jpg") center center / cover no-repeat fixed;
+      color: #f4e8d8;
+      overflow-x: hidden;
+      transition: background-position 0.05s linear;
+    }
 
-        .container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: rgba(0, 0, 0, 0.55);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
-            margin-top: 50px;
-        }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.55);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      margin-top: 50px;
+    }
 
-        .title {
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 2.2em;
-            color: #d4af37;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-            letter-spacing: 2px;
-        }
+    .title {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 2.2em;
+      color: #d4af37;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+      letter-spacing: 2px;
+    }
 
-        .subtitle {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 1.1em;
-            color: #c9b991;
-            font-style: italic;
-        }
+    .subtitle {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.1em;
+      color: #c9b991;
+      font-style: italic;
+    }
 
-        .content {
-            line-height: 1.8;
-            font-size: 1.05em;
-            text-align: justify;
-        }
+    .content {
+      line-height: 1.8;
+      font-size: 1.05em;
+      text-align: justify;
+    }
 
-        .section-title {
-            font-size: 1.5em;
-            color: #d4af37;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            text-align: center;
-            font-weight: bold;
-        }
+    .section-title {
+      font-size: 1.5em;
+      color: #d4af37;
+      margin-top: 25px;
+      margin-bottom: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
 
-        .paragraph {
-            margin-bottom: 18px;
-            text-indent: 20px;
-        }
+    .paragraph {
+      margin-bottom: 18px;
+      text-indent: 20px;
+    }
 
-        .cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1em;
-            background-color: #d4af37;
-            margin-left: 2px;
-            animation: blink 0.7s infinite;
-        }
+    .instagram-link {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(212, 175, 55, 0.3);
+    }
 
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
+    .instagram-link p {
+      color: #c9b991;
+      font-size: 1em;
+      margin-bottom: 15px;
+      font-style: italic;
+    }
 
-        .instagram-link {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(212, 175, 55, 0.3);
-        }
+    .instagram-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(
+        45deg,
+        #f09433 0%,
+        #e6683c 25%,
+        #dc2743 50%,
+        #cc2366 75%,
+        #bc1888 100%
+      );
+      color: white;
+      padding: 15px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 1.1em;
+      font-weight: bold;
+      transition: all 0.3s;
+      box-shadow: 0 5px 20px rgba(188, 24, 136, 0.3);
+    }
 
-        .instagram-link p {
-            color: #c9b991;
-            font-size: 1em;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
+    .instagram-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(188, 24, 136, 0.5);
+    }
 
-        .instagram-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 1.1em;
-            font-weight: bold;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(188, 24, 136, 0.3);
-        }
+    .instagram-icon {
+      font-size: 1.4em;
+    }
 
-        .instagram-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(188, 24, 136, 0.5);
-        }
+    /* 🎵 Controles de audio */
+    .audio-controls {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 15px 20px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
 
-        .instagram-icon {
-            font-size: 1.4em;
-        }
+    .audio-button {
+      background: none;
+      border: none;
+      color: #d4af37;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+    }
 
-        /* 🎵 Controles de audio */
-        .audio-controls {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 15px 20px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-        }
+    .audio-button:hover {
+      transform: scale(1.1);
+      color: #f4e8d8;
+    }
 
-        .audio-button {
-            background: none;
-            border: none;
-            color: #d4af37;
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-        }
+    .volume-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        .audio-button:hover {
-            transform: scale(1.1);
-            color: #f4e8d8;
-        }
+    .volume-slider {
+      width: 100px;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(212, 175, 55, 0.3);
+      outline: none;
+      -webkit-appearance: none;
+    }
 
-        .volume-control {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #d4af37;
+      cursor: pointer;
+    }
 
-        .volume-slider {
-            width: 100px;
-            height: 4px;
-            border-radius: 2px;
-            background: rgba(212, 175, 55, 0.3);
-            outline: none;
-            -webkit-appearance: none;
-        }
+    .volume-icon {
+      color: #d4af37;
+      font-size: 18px;
+    }
 
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: #d4af37;
-            cursor: pointer;
-        }
+    /* 🎬 Splash screen */
+    .splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #2c1810 0%, #5a1f1f 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s;
+    }
 
-        .volume-icon {
-            color: #d4af37;
-            font-size: 18px;
-        }
+    .splash-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
 
-        /* Pantalla de inicio (splash) */
-        .splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #2c1810 0%, #5a1f1f 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s;
-        }
+    .splash-button {
+      background: #d4af37;
+      color: #2c1810;
+      border: none;
+      padding: 20px 50px;
+      font-size: 1.2em;
+      font-family: "Georgia", serif;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+    }
 
-        .splash-screen.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
+    .splash-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+    }
 
-        .splash-button {
-            background: #d4af37;
-            color: #2c1810;
-            border: none;
-            padding: 20px 50px;
-            font-size: 1.2em;
-            font-family: 'Georgia', serif;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
-        }
+    .splash-text {
+      color: #d4af37;
+      font-size: 1.5em;
+      margin-bottom: 30px;
+      text-align: center;
+    }
 
-        .splash-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
-        }
-
-        .splash-text {
-            color: #d4af37;
-            font-size: 1.5em;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        @media (max-width: 600px) {
-            .audio-controls {
-                bottom: 20px;
-                right: 20px;
-                padding: 12px 15px;
-            }
-            .volume-control { display: none; }
-        }
-    </style>
+    @media (max-width: 600px) {
+      .audio-controls {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 15px;
+      }
+      .volume-control {
+        display: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <!-- 🎬 Splash screen para activar audio -->
-    <div class="splash-screen" id="splashScreen">
-        <div class="splash-text">🍷 Bienvenido a Vino Los Cinco 🍷</div>
-        <button class="splash-button" id="startButton">Comenzar</button>
+  <!-- 🎬 Splash screen -->
+  <div class="splash-screen" id="splashScreen">
+    <div class="splash-text">🍷 Bienvenido a Vino Los Cinco 🍷</div>
+    <button class="splash-button" id="startButton">Comenzar</button>
+  </div>
+
+  <div class="container">
+    <div class="title">LOS CINCO – BONARDA 2024-2025</div>
+    <div class="subtitle">San Juan · Argentina</div>
+
+    <div class="content">
+      <div class="section-title">Una historia entre amigos, vino y charlas</div>
+      <div class="paragraph">
+        Dicen que los grandes proyectos nacen en una mesa, entre copas, risas y
+        conversaciones que se alargan hasta que el sol asoma.
+      </div>
+
+      <div class="paragraph">
+        Así empezó Los Cinco. Cinco amigos en San Juan, unidos por la amistad y
+        el gusto por los buenos vinos...
+      </div>
+
+      <div class="section-title">El vino</div>
+      <div class="paragraph">
+        Este Bonarda joven fue cuidadosamente macerado utilizando un sistema de
+        air mixing...
+      </div>
+
+      <div class="section-title">El espíritu de Los Cinco</div>
+      <div class="paragraph">
+        Más que un vino, Los Cinco es una excusa para reencontrarse. Porque al
+        final, el vino no se bebe solo... se comparte.
+      </div>
+
+      <div class="instagram-link">
+        <p>Seguinos en Instagram para más historias y momentos:</p>
+        <a
+          href="https://www.instagram.com/loscincovinos/"
+          target="_blank"
+          class="instagram-button"
+        >
+          <i class="fa-brands fa-instagram instagram-icon"></i>
+          @loscincovinos
+        </a>
+      </div>
     </div>
+  </div>
 
-    <div class="container">
-        <div class="title">LOS CINCO – BONARDA 2024-2025</div>
-        <div class="subtitle">San Juan · Argentina</div>
-
-        <div class="content">
-            <div class="section-title">Una historia entre amigos, vino y charlas</div>
-            <div class="paragraph">
-                Dicen que los grandes proyectos nacen en una mesa, entre copas, risas y conversaciones que se alargan hasta que el sol asoma.
-            </div>
-            <div class="paragraph">
-                Así empezó Los Cinco.  
-                Cinco amigos en San Juan, unidos por la amistad y el gusto por los buenos vinos...
-            </div>
-            <div class="section-title">El vino</div>
-            <div class="paragraph">
-                Este Bonarda joven fue cuidadosamente macerado utilizando un sistema de air mixing...
-            </div>
-            <div class="section-title">El espíritu de Los Cinco</div>
-            <div class="paragraph">
-                Más que un vino, Los Cinco es una excusa para reencontrarse.  
-                Porque al final, el vino no se bebe solo... se comparte.
-            </div>
-
-            <div class="instagram-link">
-                <p>Seguinos en Instagram para más historias y momentos:</p>
-                <a href="https://www.instagram.com/loscincovinos/" target="_blank" class="instagram-button">
-                    <i class="fa-brands fa-instagram instagram-icon"></i>
-                    @loscincovinos
-                </a>
-            </div>
-        </div>
+  <!-- 🎵 Controles de audio -->
+  <div class="audio-controls">
+    <button class="audio-button" id="playPauseBtn" title="Pausar/Reproducir">
+      <span id="playIcon">⏸</span>
+    </button>
+    <div class="volume-control">
+      <span class="volume-icon">🔊</span>
+      <input
+        type="range"
+        class="volume-slider"
+        id="volumeSlider"
+        min="0"
+        max="100"
+        value="30"
+      />
     </div>
+  </div>
 
-    <!-- 🎵 Controles de audio -->
-    <div class="audio-controls">
-        <button class="audio-button" id="playPauseBtn" title="Pausar/Reproducir">
-            <span id="playIcon">⏸</span>
-        </button>
-        <div class="volume-control">
-            <span class="volume-icon">🔊</span>
-            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="30">
-        </div>
-    </div>
+  <!-- 🎧 Audio -->
+  <audio id="backgroundMusic" loop>
+    <source
+      src="bossa%20nova-verano-instrumental-brasil.mp3"
+      type="audio/mp3"
+    />
+  </audio>
 
-    <!-- 🎧 Audio -->
-    <audio id="backgroundMusic" loop>
-        <source src="tema.mp3" type="audio/mp3">
-    </audio>
+  <script>
+    // 💫 Fondo panorámico dinámico
+    document.addEventListener("mousemove", (e) => {
+      const xPercent = e.clientX / window.innerWidth;
+      const yPercent = e.clientY / window.innerHeight;
+      document.body.style.backgroundPosition = `${50 + (xPercent - 0.5) * 10}% ${
+        50 + (yPercent - 0.5) * 10
+      }%`;
+    });
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener("deviceorientation", (e) => {
+        const gamma = e.gamma || 0;
+        const beta = e.beta || 0;
+        document.body.style.backgroundPosition = `${50 + gamma / 5}% ${
+          50 + beta / 10
+        }%`;
+      });
+    }
 
-    <script>
-        // 💫 Fondo 360 dinámico
-        document.addEventListener('mousemove', e => {
-            const xPercent = e.clientX / window.innerWidth;
-            const yPercent = e.clientY / window.innerHeight;
-            document.body.style.backgroundPosition = `${50 + (xPercent - 0.5) * 10}% ${50 + (yPercent - 0.5) * 10}%`;
-        });
-        if (window.DeviceOrientationEvent) {
-            window.addEventListener('deviceorientation', e => {
-                const gamma = e.gamma || 0;
-                const beta = e.beta || 0;
-                document.body.style.backgroundPosition = `${50 + gamma / 5}% ${50 + beta / 10}%`;
-            });
-        }
+    // 🎵 Control de audio
+    const audio = document.getElementById("backgroundMusic");
+    const splash = document.getElementById("splashScreen");
+    const playPauseBtn = document.getElementById("playPauseBtn");
+    const playIcon = document.getElementById("playIcon");
+    const volumeSlider = document.getElementById("volumeSlider");
+    let isPlaying = false;
 
-        // 🎵 Control de audio
-        const audio = document.getElementById('backgroundMusic');
-        const splash = document.getElementById('splashScreen');
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const playIcon = document.getElementById('playIcon');
-        const volumeSlider = document.getElementById('volumeSlider');
-        let isPlaying = false;
+    audio.volume = 0.3;
 
-        audio.volume = 0.3;
+    document.getElementById("startButton").addEventListener("click", () => {
+      audio.play();
+      isPlaying = true;
+      splash.classList.add("hidden");
+      setTimeout(() => (splash.style.display = "none"), 600);
+    });
 
-        document.getElementById('startButton').addEventListener('click', () => {
-            audio.play();
-            isPlaying = true;
-            splash.classList.add('hidden');
-            setTimeout(() => splash.style.display = 'none', 600);
-        });
+    playPauseBtn.addEventListener("click", () => {
+      if (isPlaying) {
+        audio.pause();
+        playIcon.textContent = "▶";
+      } else {
+        audio.play();
+        playIcon.textContent = "⏸";
+      }
+      isPlaying = !isPlaying;
+    });
 
-        playPauseBtn.addEventListener('click', () => {
-            if (isPlaying) {
-                audio.pause();
-                playIcon.textContent = '▶';
-            } else {
-                audio.play();
-                playIcon.textContent = '⏸';
-            }
-            isPlaying = !isPlaying;
-        });
-
-        volumeSlider.addEventListener('input', e => {
-            audio.volume = e.target.value / 100;
-        });
-    </script>
+    volumeSlider.addEventListener("input", (e) => {
+      audio.volume = e.target.value / 100;
+    });
+  </script>
 </body>
 </html>
+
 
